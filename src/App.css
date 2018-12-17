@@ -1,32 +1,100 @@
-.App {
+.default {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.serverStatus {
+  margin-top: 30px;
+}
+
+.serverStatus-online,
+.serverStatus-offline {
+  font-size: 32px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.serverStatus-online {
+  color: red
+}
+
+.serverStatus-animation {
+  position: relative;
+  bottom: 8px;
+  left: 8px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: red;
+  animation: opacityPulse 1.3s linear infinite;
+}
+
+.serverStatus-offline {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.serverStatus-animation {
+
+}
+
+.header {
+  margin-top: 10%;
+}
+
+.header,
+.headerControls {
+  font-size: 42px;
   color: white;
+  font-weight: 500;
 }
 
-.App-link {
-  color: #61dafb;
+.animationContainer {
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  display: inline-block;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.headerControls {
+  margin-bottom: 30px;
+}
+
+.on,
+.off {
+  display: inline-block;
+  padding: 20px 60px;
+  margin: 0 20px 0 20px;
+  border: 8px solid #1a1a1a;
+  border-radius: 24px;
+  background-color: #fff;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.on {
+  background-color: #80ff80;
+}
+
+.off {
+  background-color: #ff4d4d;
+}
+
+
+@keyframes opacityPulse {
+  0% {
+    opacity: 1
   }
-  to {
-    transform: rotate(360deg);
+  50%   {
+    opacity: 0
+  }
+  100% {
+    opacity: 1
   }
 }
