@@ -5,7 +5,8 @@ import './App.css';
 import axios from 'axios';
 import Animation from './Animation'
 
-let hostUrl =  "http://192.168.2.34:5000"
+let hostUrl =  "http://192.168.2.34:24601"
+// let hostUrl =  "http://localhost:5000"
 
 class App extends Component {
   constructor(){
@@ -14,9 +15,15 @@ class App extends Component {
     this.state = {
       data: null,
       isServerOnline: false,
+      value: '',
     }
     this.onClick=this.onClick.bind(this)
     this.ping=this.ping.bind(this)
+    this.handleChange=this.handleChange.bind(this)
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
   test() {
@@ -52,7 +59,9 @@ class App extends Component {
 
   onClick(power) {
     if (power) {
-      axios.get(hostUrl + '/on')
+      axios.post(hostUrl + '/on', {
+        test: 'hi'
+      })
       .then(res => {
         console.log(res.data);
       })
@@ -69,6 +78,20 @@ class App extends Component {
         console.log(error);
       });
     }
+  }
+
+  testSet() {
+    let value = parseInt(this.state.value)
+    console.log('value => ', value);
+    axios.post(hostUrl + '/set', {
+      value: value
+    })
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render() {
@@ -92,6 +115,10 @@ class App extends Component {
             <div className="on" onClick={() => this.onClick(true)}>On</div>
             <div className="off" onClick={() => this.onClick(false)}>Off</div>
           </div>
+        </div>
+        <div className="testSet">
+          <input className='input' type="number" value={this.state.value} onChange={this.handleChange} />
+          <div className="set" onClick={() => this.testSet()}>Set</div>
         </div>
       </div>
     );
